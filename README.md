@@ -4,4 +4,4 @@
      git clone https://github.com/Aswinpookkatt/Book-store.git
      cd bookapp
      python manage.py runserver
-     Go to http://localhost:8000/store/
+     Go to http://localhost:8000/
