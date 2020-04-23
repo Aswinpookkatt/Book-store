@@ -1,0 +1,33 @@
+
+{% extends 'ebook/demo.html' %}
+{% block main %}
+<div class="header-intro">
+
+<h2> E-Books</h2>
+    <p>Download your favorite books for free from here.</p>
+</div>
+
+
+
+
+     <div class="main-container">
+        <div class="row">
+   {% for ebook in ebooks %}
+             <div class="column">
+               <a href="{% url 'ebook_' ebook.id %}">
+                   <div class="card">
+                       <img class="card-img-top" src="{{ ebook.image.url }}">
+                       <p class="card-body">
+                           <h5 class="card-text">{{ ebook.title }} </h5>
+                        </p>
+                   </div>
+              </a>
+            </div>
+
+         {% endfor %}
+     </div>
+
+   </div>
+
+
+{% endblock main %}

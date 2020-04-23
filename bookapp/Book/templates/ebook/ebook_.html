@@ -1,0 +1,46 @@
+{% extends 'ebook/demo.html' %}
+
+{% block main %}
+
+
+<div class="flex-box">
+    <div class="flex-child">
+        <img src="{{ ebook.image.url }}" id="shadow-effect"/>
+    </div>
+
+    <div class="flex-child" id="flex-text">
+        <p><strong>Title:</strong> {{ ebook.title }}</p>
+        <p><strong>Author:</strong> {{ ebook.authors }}</p>
+        <p><strong>ISBN:</strong> {{ ebook.isbn }}</p>
+        <p><strong>Pages:</strong> {{ ebook.pages }}</p>
+        <p><a class="btn-download" href="{{ ebook.ebook.url }}">Download NOW</a></p>
+    </div>
+</div>
+
+<div class="comment-container">
+    <h2>Comments</h2>
+    <hr/>
+    {% for comment in comments %}
+        <div class="comment-box">
+            <p>{{ comment.body }}</p>
+
+        </div>
+          <span class="text-right">Commented by {{ comment.user.username }} on {{ comment.pub_date_pretty }}</span>
+    {% endfor %}
+</div>
+<div class="comment-container">
+    <div class="comment-container">
+        {% if user.is_authenticated %}
+    <form method="post" action="{% url 'comment_' ebook.id %}">
+        {% csrf_token %}
+        <div class="container">
+            <label for="body">Comment:</label>
+            <textarea id="comment-body" name="body" class="form-control" required placeholder="Enter your comment"></textarea>
+        </div>
+        <input type="submit" value="Comment" id="btn-comment">
+    </form>
+    {% endif %}
+    </div>
+
+</div>
+{% endblock main %}

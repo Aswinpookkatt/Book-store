@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>
+    </title>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+
+  </head>
+  <body>
+
+    <div class="page-wrapper">
+    <div class="nav-wrapper">
+
+      <nav class="navbar">
+      <h2>Bookify</h2>
+        <div class="menu-toggle" id="mobile-menu">
+         <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <ul class="nav no-search">
+          <li class="nav-item"><a href="{% url 'categories_' %}">Category</a></li>
+          <li class="nav-item"><a href="{% url 'ebooks_' %}">Featured</a></li>
+          <li class="nav-item"><a href="#">Contact</a></li>
+            {% if not user.is_authenticated %}
+          <li class="nav-item"> <a href="{% url 'login_' %}">Login</a></li>
+            {% else %}
+            <li class="nav-item"><a href="javascript:{document.getElementById('logout_form').submit()}">Logout</a></li>
+            <form id="logout_form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <input type="hidden">
+            </form>
+                  {% endif %}
+        </ul>
+      </nav>
+    </div>
+      <div class="grad-bar">
+
+        {% block main %}
+        {% endblock main %}
+
+
+<footer>
+  <div>
+<h4>About Us<h4>
+
+
+
+
+</footer>
+
+<div id="social-media">
+
+<a href="#"> <img src="src/icons/twitter.png" alt="" id="icon">  </a>
+<a href="#"> <img src="src/icons/gmail.png" alt="" id="icon">  </a>
+<a href="#"> <img src="src/icons/facebook.png" alt="" id="icon">  </a>
+<a href="#"> <img src="src/icons/instagram.png" alt="" id="icon">  </a>
+</div>
+<div class="copright-container">
+
+
+<center><small id="copyright">2020 all rights Reserved<small></center>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
